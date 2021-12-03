@@ -1,0 +1,61 @@
+@keyframes particleBoxeMV {
+  0% {
+    margin-top: 0;
+  }
+  10% {
+    margin-top: -80vh;
+  }
+  100% {
+    margin-top: -50vh;
+  }
+}
+@keyframes particleMV {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    margin-left: 0;
+    opacity: 0;
+  }
+}
+.particleBox {
+  position: absolute;
+  height: 10px;
+  width: 50vh;
+  top: 110vh;
+  transform: translate(-50%, -50%);
+  animation: particleBoxeMV 5s;
+  z-index: 50;
+}
+
+.particle {
+  position: absolute;
+  width: 1vh;
+  height: 1vh;
+  min-width: 4px;
+  min-height: 4px;
+  margin-left: 50%;
+  animation: particleMV 5s cubic-bezier(0.25, 0, 0, 1);
+}
+.particle::before,
+.particle::after {
+  position: absolute;
+  content: "";
+  width: 1vh;
+  height: 1vh;
+  top: 0%;
+  left: 0%;
+  background: #ff90c3;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff82bb, 0 0 20px #ff82bb;
+  opacity: 1;
+}
+.particle::after {
+  left: 100%;
+}
+.particle.line::before,
+.particle.line::after {
+  width: 50%;
+  height: 1px;
+}
