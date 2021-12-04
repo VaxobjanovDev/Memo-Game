@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react/cjs/react.development";
+import { React, useState } from "react";
 import ImageData from "./ImageData";
 import { shuffle } from "lodash";
 import Animation from "./Animation/Animation";
@@ -54,7 +53,7 @@ const Board = () => {
               <div className={"card-wrapper " + (flipped ? "flipped" : "")}>
                 <div onClick={() => flipCard(index)} className="card">
                   <div className="card-front">
-                    <img src={item} />
+                    <img src={item} alt="Card images"/>
                   </div>
                   <div className="card-back"></div>
                 </div>
