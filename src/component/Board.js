@@ -40,7 +40,11 @@ const Board = () => {
 
   return (
     <div className="section">
+      {win && <Animation />}
       <div className="container">
+        <div className="text-header">
+          <h1>Memo Game With React</h1>
+        </div>
         <div className="board">
           {cards.map((item, index) => {
             const flipped =
@@ -58,17 +62,16 @@ const Board = () => {
             );
           })}
         </div>
-        {win && <Animation />}
         <div className="statistics">
           <h1>Clicks:{clicks}</h1>
-        </div>
-        <div class="center">
-          <input
-            onClick={() => restart()}
-            class="button"
-            type="button"
-            value="Restart"
-          />
+          <div class="center">
+            <input
+              onClick={() => restart()}
+              class="button"
+              type="button"
+              value="Restart"
+            />
+          </div>
         </div>
       </div>
     </div>
