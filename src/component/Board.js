@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import ImageData from "./ImageData";
 import { shuffle } from "lodash";
 import Animation from "./Animation/Animation";
@@ -9,6 +9,7 @@ const Board = () => {
   const [matchCards, setMatchCards] = useState([]);
   const [clicks, setClicks] = useState(0);
   const [win, setWin] = useState(false);
+
   function flipCard(index) {
     if (activeCards.length === 0) {
       setActiveCards([index]);
@@ -20,15 +21,19 @@ const Board = () => {
         if (matchCards.length + 2 === cards.length) {
           setWin(true);
         }
-        setMatchCards([...matchCards, firstIndex, secondIndex]);
+        setTimeout(
+          () => setMatchCards([...matchCards, firstIndex, secondIndex]),
+          50
+        );
       }
       setActiveCards([...activeCards, index]);
     }
-    if (activeCards.length === 2) {
-      setActiveCards([]);
+    if (activeCards.length >= 1) {
+      setTimeout(() => setActiveCards([]), 500);
     }
     setClicks(clicks + 1);
   }
+
   function restart() {
     setCards(shuffle([...ImageData, ...ImageData]));
     setActiveCards([]);
@@ -53,7 +58,7 @@ const Board = () => {
               <div className={"card-wrapper " + (flipped ? "flipped" : "")}>
                 <div onClick={() => flipCard(index)} className="card">
                   <div className="card-front">
-                    <img src={item} alt="Card images"/>
+                    <img src={item} alt="Card images" />
                   </div>
                   <div className="card-back"></div>
                 </div>
@@ -63,10 +68,10 @@ const Board = () => {
         </div>
         <div className="statistics">
           <h1>Clicks:{clicks}</h1>
-          <div class="center">
+          <div className="center">
             <input
               onClick={() => restart()}
-              class="button"
+              className="button"
               type="button"
               value="Restart"
             />
